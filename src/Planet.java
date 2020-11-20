@@ -28,11 +28,11 @@ public enum Planet {
         double earthWeight = 75;
         double mass = earthWeight/EARTH.surfaceGravity();
         for (Planet p : Planet.values())
-           System.out.printf("Your weight on %s is %.1f%n",
+           System.out.printf("Weight on %s is %.1f%n",
                              p, p.surfaceWeight(mass));
-        // Your weight on MERCURY is 28.3
-        // Your weight on VENUS is 67.9
-        // Your weight on EARTH is 75.0
-        // Your weight on MARS is 28.
+        // Weight on MERCURY is 28.3
+        // Weight on VENUS is 67.9
+        // Weight on EARTH is 75.0
+        // Weight on MARS is 28.
     }
 }

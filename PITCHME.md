@@ -19,7 +19,23 @@
 ---
 ## Enumerated Types
 
-Are actually just like classes, but:
+Let variables span over a fixed set of values:
+```java code-noblend
+public enum Direction {
+    NORTH, SOUTH, EAST, WEST
+}
+```
+Can be used:
+```java code-noblend
+Direction d = Direction.NORTH;
+if (d == Direction.NORTH)
+	 d = Direction.EAST;
+System.out.println(d); // EAST
+```
+This is the simple and common use of enumerated types.
+---
+
+Enumerated types are actually just like classes, but:
 1. Have a predefined set of instances.
 1. Cannot be instantiated in any other way.
 1. Have some more default methods.
@@ -30,6 +46,9 @@ public enum Day {
     THURSDAY, FRIDAY, SATURDAY;
 }
 ```
+
+
+
 
 ---
 @code[java code-max code-noblend](src/MainForDay.java)
@@ -147,7 +166,7 @@ Execution does not stop, because we caught the exception.
 
 ---
 @code[java code-max code-noblend](src/TryCatch.java)
-@[1-5](`g` just throws an `IOException`.)
+@[1-5](`g` just throws a `NullPointerException`.)
 @[7-17](What would this print?)
 @css[fragment]("BXD", and there is no error: the exception was caught.)
 
@@ -200,7 +219,7 @@ But we could have also specified `throws IOException` or `throws Exception`.
 
 
 ---
-## Why use Exceptions?
+### Why use Exceptions?
 
 It seems like we can do all this with return statements. However, exceptions are very useful for a few reasons.
 
@@ -220,7 +239,7 @@ public String readFile(String fileName) {
         read the file into memory;
         close the file;
     } catch (fileOpenFailed) {
-       doSomething;
+        doSomething;
     } catch (sizeDeterminationFailed) {
         doSomething;
     } catch (memoryAllocationFailed) {
@@ -341,8 +360,9 @@ Writing code that java knows is unreachable results in a compilation error.
 
   
 ---
-### Wrapped Types
+# Wrapped Types
 
+---
 Every atomic variable type has a class that is just a wrapper for the primitive variable.
 <table>
 	<tr>
@@ -458,9 +478,8 @@ Next, add exception handling:
 1. In `DivideScorer`, if `d <= 0`.
 1. In `sumScores`, if `ScoreException` happens, catch it and throw an 
 `IllegalArgumentException`.
-1. In `Main`, if it happens, print trace and exit.
-  + No need to catch `IllegalArgumentException` - it is a runtime exception.
-  
+1. In `Main`, if a `ScoreException` happens, print trace and exit.
+  + Don't catch `IllegalArgumentException`. What will happen if it is thrown?
   
 ---
 
